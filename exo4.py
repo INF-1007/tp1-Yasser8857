@@ -1,36 +1,34 @@
-# -*- coding: utf-8 -*-
-# Exercice 04 - Verification d'une rampe d'accessibilite (gabarit)
-"""
-Objectif :
-- DEMANDER : hauteur (cm, float) et longueur (m, float)
-- Valider : hauteur >= 0 et longueur > 0
-- Calculer :
-    hauteur_m = hauteur_cm / 100
-    pente = (hauteur_m / longueur_m) * 100
-    angle = atan(hauteur_m / longueur_m) en degres
-- Verifier la conformite : pente <= 8.00
 
-Si invalide, afficher exactement :
-    Erreur - donnees invalides.
+import math
 
-Sinon, afficher EXACTEMENT :
-    Pente: PP.PP%
-    Angle: AA.AA deg
-    Conforme: OUI|NON
-Si NON, afficher une 4e ligne :
-    Depassement: DD.DD%
+try:
+   Longueur=float(input("Entrez la longueur horizontale (en metres) : ")) 
+   if Longueur<=0:
+    print("Erreur - donnees invalides.")
+    quit()
+except ValueError:
+    print("Erreur - donnees invalides.")
+try:
+   Hauteur=float(input("Entrez la hauteur a franchir (en centimetres) : "))
+   if Hauteur<0:
+    print("Erreur - donnees invalides.")
+    quit()
+except ValueError:
+    print("Erreur - donnees invalides.")
 
-Prompts EXACTS :
-1) "Entrez la hauteur a franchir (en centimetres) : "
-2) "Entrez la longueur horizontale (en metres) : "
-"""
+Hauteur_m= Hauteur / 100
+pente = (Hauteur_m/ Longueur) * 100
+angle =  math.degrees(math.atan(Hauteur_m / Longueur))
 
-# TODO: Importer math
+if pente>8:
+ Conforme="NON"
+ Depassement=(pente-8.00)
+else :
+ Conforme="OUI"
 
-# TODO: Lire hauteur_cm et longueur_m
-
-# TODO: Validation
-
-# TODO: Calcul pente et angle
-
-# TODO: Affichage exact (+ ligne depassement si necessaire)
+print(f"Pente: {pente:0>5.2f}%")
+print(f"Angle:{angle:0>5.2f} deg")
+print(f"Conforme : {Conforme}")
+if Conforme=="NON":
+ print(f"Dépassement:{Depassement:0>5.2f}%")
+   
